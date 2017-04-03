@@ -301,7 +301,7 @@ else
   if [ "$DAYS_EXP" -le "$OLD_DAYS_EXP" ]; then
     echo "ERROR:   Certificate renewal failed. An e-mail alert was sent to ${EMAIL_ALERT_ADDRESS_TO}."
     # Send alert email
-    cat "${EMAIL_ALERT_BODY_FILE}" | mail -aFrom:"${EMAIL_ALERT_ADDRESS_FROM}" -s "${EMAIL_ALERT_SUBJ}" ${EMAIL_ALERT_ADDRESS_TO}
+    cat "${EMAIL_ALERT_BODY_FILE}" | ssmtp -aFrom:"${EMAIL_ALERT_ADDRESS_FROM}" -s "${EMAIL_ALERT_SUBJ}" ${EMAIL_ALERT_ADDRESS_TO}
     # Set exit code, see comments above
     if [ "$2" = "${OPT_NO_SRV_RESTART}" ]; then exit 0; else exit 1; fi;
   else
